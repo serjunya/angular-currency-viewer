@@ -1,0 +1,28 @@
+<div class="col main-card">
+  <div class="row">
+    <h1>Currency RUB</h1>
+    <button class="centered" (click)="expanded = !expanded">
+      <svg *ngIf="!expanded;else minus" xmlns="http://www.w3.org/2000/svg" fill="black" viewBox="4 4 8 8">
+        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+      </svg>
+
+      <ng-template #minus>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="black" viewBox="4 4 8 8">
+          <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+        </svg>
+      </ng-template>
+    </button>
+  </div>
+  <p>{{ updatedTime.toLocaleString() }}</p>
+</div>
+
+<div class="col bars">
+  <currency-bar destCurrency="usd" [cost]="quotes.USD" [shift]="differences.USD" />
+  <currency-bar destCurrency="eur" [cost]="quotes.EUR" [shift]="differences.EUR" />
+  <currency-bar destCurrency="gbp" [cost]="quotes.GBP" [shift]="differences.GBP" />
+  <div *ngIf="expanded">
+    <currency-bar destCurrency="cny" [cost]="quotes.CNY" [shift]="differences.CNY" />
+    <currency-bar destCurrency="jpy" [cost]="quotes.JPY" [shift]="differences.JPY" />
+    <currency-bar destCurrency="try" [cost]="quotes.TRY" [shift]="differences.TRY" />
+  </div>
+</div>
